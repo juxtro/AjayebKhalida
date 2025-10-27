@@ -1,0 +1,121 @@
+<!--
+ملفات الموقع: انسخ كل قسم واحفظه كملف منفصل بنفس الاسم
+1) index.html
+2) story.html
+3) about.html
+
+لحفظ وتشغيل:
+- افتح Notepad، انسخ محتوى كل قسم واحفظه بالاسم المذكور (مثلاً index.html).
+- ضع الثلاثة ملفات في مجلد واحد ثم افتح index.html في المتصفح.
+-->
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>عجائب خالدة — الرئيسية</title>
+  <style>
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Tahoma,Arial,Segoe UI,sans-serif;background:#071028;color:#f1f5f9}
+    header{background:linear-gradient(90deg,#071028,#09243a);padding:14px 18px;display:flex;align-items:center;justify-content:space-between}
+    .brand{display:flex;gap:12px;align-items:center}
+    .logo{width:52px;height:52px;border-radius:10px;background:linear-gradient(45deg,#144a9c,#06b6d4);display:flex;align-items:center;justify-content:center;font-weight:bold}
+    h1{margin:0;font-size:18px}
+    p.lead{margin:0;color:#9fb0c2;font-size:13px}
+    main{padding:16px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px}
+    .card{background:#082033;padding:12px;border-radius:10px;display:flex;flex-direction:column;gap:10px;box-shadow:0 6px 18px rgba(2,6,23,.6)}
+    .thumb{height:150px;border-radius:8px;overflow:hidden;background:#081726;display:flex;align-items:center;justify-content:center}
+    .thumb img{width:100%;height:100%;object-fit:cover}
+    .title{font-size:16px;margin:0}
+    .excerpt{color:#9fb0c2;font-size:13px;margin:0}
+    .actions{display:flex;gap:8px;justify-content:flex-start}
+    .btn{background:#ffd166;border:none;color:#081020;padding:8px 12px;border-radius:8px;cursor:pointer;font-weight:700}
+    .link{background:transparent;border:1px solid rgba(255,255,255,.06);padding:8px 10px;border-radius:8px;color:#cfe7ff}
+    footer{padding:12px;text-align:center;color:#9fb0c2}
+    @media (max-width:600px){.thumb{height:110px}}
+  </style>
+</head>
+<body>
+  <header>
+    <div class="brand">
+      <div class="logo">عج</div>
+      <div>
+        <h1>عجائب خالدة</h1>
+        <p class="lead">قصص وصور لأشهر عجائب العالم — اضغط "قراءة الملخص" لتقرأ التفاصيل</p>
+      </div>
+    </div>
+    <div style="display:flex;gap:8px;align-items:center">
+      <a class="link" href="about.html">من نحن</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="grid" id="grid"></section>
+  </main>
+
+  <footer>نسخة خفيفة تعمل محلياً — يمكن إضافة المزيد من القصص لاحقاً.</footer>
+
+  <script>
+    // بيانات القصص (مضمنة لتسهيل التشغيل محلياً)
+    const stories = [
+      {
+        id:1,
+        title:'أهرامات الجيزة – لغز لا يشيخ',
+        excerpt:'أعجوبة مصر الخالدة، تقف شامخة منذ آلاف السنين رغم العواصف والزمن.',
+        content:`تقع الأهرامات الثلاثة على هضبة الجيزة بمصر، وتُعد آخر ما تبقى من عجائب الدنيا السبع القديمة.\n\nلغز بنائها ما زال يدهش العلماء حتى اليوم — كيف نقل المصريون القدماء حجارة تزن عشرات الأطنان دون آلات حديثة؟\n\nبعض النظريات تقول إنها بُنيت بطريقة هندسية تعتمد على المنحدرات الداخلية، بينما يرى آخرون أن هناك أسرارًا لم تُكشف بعد. زيارة الأهرامات تمنحك إحساسًا بأنك أمام شيء يتحدى الزمن نفسه.`,
+        image:'https://upload.wikimedia.org/wikipedia/commons/e/e3/Kheops-Pyramid.jpg'
+      },
+      {
+        id:2,
+        title:'حدائق بابل المعلّقة – الجنة المفقودة',
+        excerpt:'أجمل حديقة في التاريخ… ولكن لا أحد يعرف إن كانت حقيقية أم أسطورة!',
+        content:`تُروى الأساطير أن الملك نبوخذنصر الثاني بنى هذه الحدائق لزوجته المشتاقة لجبال موطنها.\n\nكانت تتكون من طبقات خضراء مغطاة بالنباتات والزهور والشلالات الاصطناعية في وسط صحراء قاحلة.\n\nلكن علماء الآثار لم يعثروا على دليل قاطع لموقعها الحقيقي حتى اليوم — ربما كانت في بابل، أو في نينوى، أو ربما لم توجد قط. هكذا تبقى "الحدائق المعلقة" لغزًا جميلاً بين الحقيقة والخيال.`,
+        image:'https://upload.wikimedia.org/wikipedia/commons/8/8b/Hanging_Gardens_of_Babylon.jpg'
+      },
+      {
+        id:3,
+        title:'تمثال زيوس – رمز القوة والإلهام',
+        excerpt:'تمثال ضخم من الذهب والعاج يجسد هيبة الإله زيوس في اليونان القديمة.',
+        content:`بُني التمثال داخل معبد أولمبيا في القرن الخامس قبل الميلاد.\n\nكان ارتفاعه يفوق 12 مترًا، يجلس على عرش مهيب مزخرف بالعاج والذهب والأحجار الكريمة.\n\nاختفى التمثال في القرن الخامس الميلادي، ويُعتقد أنه دُمّر في حريق. وُيعد أحد أعظم أعمال النحت في التاريخ.`,
+        image:'https://upload.wikimedia.org/wikipedia/commons/f/f9/Statue_of_Zeus_at_Olympia.jpg'
+      },
+      {
+        id:4,
+        title:'منارة الإسكندرية – الضوء الذي قاد العالم',
+        excerpt:'أول منارة في التاريخ، أضاءت للبحارة لقرون قبل أن يبتلعها البحر.',
+        content:`شيّدت منارة الإسكندرية على جزيرة فاروس في القرن الثالث قبل الميلاد.\n\nكانت ارتفاعها يتجاوز 100 متر، وتُعد من أعظم الإنجازات الهندسية في العالم القديم.\n\nاستُخدمت المرايا العاكسة لتركيز ضوء النار ليُرى من مسافات بعيدة في البحر، لكنها تعرضت لزلازل وهدمت في نهاياتها.`,
+        image:'https://upload.wikimedia.org/wikipedia/commons/8/8d/Pharos_of_Alexandria.jpg'
+      }
+    ];
+
+    const grid = document.getElementById('grid');
+
+    function render(){
+      grid.innerHTML = '';
+      stories.forEach(s=>{
+        const card = document.createElement('article'); card.className='card';
+        card.innerHTML = `
+          <div class="thumb"><img src="${s.image}" alt=""></div>
+          <h3 class="title">${escapeHTML(s.title)}</h3>
+          <p class="excerpt">${escapeHTML(s.excerpt)}</p>
+          <div class="actions">
+            <button class="btn" onclick="openStory(${s.id})">قراءة الملخص</button>
+          </div>
+        `;
+        grid.appendChild(card);
+      });
+    }
+
+    function openStory(id){
+      // ننتقل لصفحة القصة مع تمرير id عبر query string
+      location.href = 'story.html?id='+id;
+    }
+
+    function escapeHTML(s){ return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;'); }
+
+    render();
+  </script>
+</body>
+</html>
